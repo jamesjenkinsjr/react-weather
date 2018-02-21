@@ -30,11 +30,11 @@ class App extends Component {
       <form>
         <label>
           Latitude:
-          <input type="float" onChange={(e) => this.handleLatChange(e)} value={this.state.lat}/>
+          <input type="number" min="-90" max="90" onChange={(e) => this.handleLatChange(e)} value={this.state.lat} required/>
         </label>
         <label>
           Longitude:  
-          <input type="float" onChange={(e) => this.handleLongChange(e)} value={this.state.long}/>      
+          <input type="number" min="-180" max="180" onChange={(e) => this.handleLongChange(e)} value={this.state.long} required/>      
         </label>
         <button onClick={() => alert('Shazam it\'s weather')}>MAKE IT RAIN!</button>
       </form>
