@@ -2,6 +2,26 @@ import React, { Component } from 'react';
 import './App.css';
 
 class App extends Component {
+  constructor(){
+    super();
+    this.state = {
+      lat: 0.0,
+      long: -0.0
+    };
+    this.handleLatChange = this.handleLatChange.bind(this);
+    this.handleLongChange = this.handleLongChange.bind(this);
+  }
+  handleLatChange(e) {
+    this.setState({
+      lat: +e.target.value
+    });
+  }
+  handleLongChange(e) {
+    this.setState({
+      long: +e.target.value
+    })
+  }
+  
   render() {
     return (
     <div>
@@ -10,13 +30,13 @@ class App extends Component {
       <form>
         <label>
           Latitude:
-          <input type="number" placeholder="89.89"/>
+          <input type="float" onChange={(e) => this.handleLatChange(e)} value={this.state.lat}/>
         </label>
         <label>
           Longitude:  
-          <input type="number" placeholder="-12.12"/>      
+          <input type="float" onChange={(e) => this.handleLongChange(e)} value={this.state.long}/>      
         </label>
-        <button>Make it rain!</button>
+        <button onClick={() => alert('Shazam it\'s weather')}>MAKE IT RAIN!</button>
       </form>
     </div>
     );
