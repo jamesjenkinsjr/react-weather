@@ -11,15 +11,16 @@ const serverApp = express();
 const port = process.env.PORT || 5000;
 
 serverApp.get('/forecast/:lat,:long', function(request, response){
-    const url = `https://api.darksky.net/forecast/${API_KEY}/37.8267,-122.4233`;
+    const { lat, long } = request.params;
+    const url = `https://api.darksky.net/forecast/${API_KEY}/${lat},${long}`;
     axios
         .get(url)
         .then(res => {
-            response.json(res.data);
+            response.status(200).json(res.data);
         })
         .catch(err => {
-            response.json({
-                msg: 'You junk is bunked'
+            response.status(500).json({
+                msg: 'Yo junk is bunked'
             });
         });
 });
