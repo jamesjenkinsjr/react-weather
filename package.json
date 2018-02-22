@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/jamesjenkinsjr/react-weather/issues"
   },
-  "homepage": "https://github.com/jamesjenkinsjr/react-weather#readme"
+  "homepage": "https://github.com/jamesjenkinsjr/react-weather#readme",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "body-parser": "^1.18.2",
+    "dotenv": "^5.0.0",
+    "express": "^4.16.2"
+  }
 }
