@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Axios from 'axios';
+import { getWeather } from './services/weather.js';
 import './App.css';
 
 class App extends Component {
@@ -7,7 +7,8 @@ class App extends Component {
     super();
     this.state = {
       lat: 0.0,
-      long: -0.0
+      long: -0.0,
+      currentWeather: {}
     };
     this.handleLatChange = this.handleLatChange.bind(this);
     this.handleLongChange = this.handleLongChange.bind(this);
@@ -26,7 +27,14 @@ class App extends Component {
   
   handleSubmit(e) {
     e.preventDefault();
-    alert('breh');
+    getWeather(this.state.lat, this.state.long)
+      .then(response => {
+        const currentWeather = response.data.currently;
+        this.setState({currentWeather: currentWeather});
+      })
+      .catch(error => {
+        console.error(error);
+      });
   }
   render() {
     return (
@@ -44,6 +52,9 @@ class App extends Component {
         </label>
         <button type="submit">MAKE IT RAIN!</button>
       </form>
+      <pre>
+        {JSON.stringify(this.state.currentWeather, null, 4)}
+      </pre>
     </div>
     );
   }
