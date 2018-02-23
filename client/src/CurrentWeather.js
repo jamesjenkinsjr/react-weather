@@ -15,7 +15,7 @@ return(
 
 CurrentWeather.propTypes = {
     time: PropTypes.number.isRequired,
-    sumary: PropTypes.string.isRequired,
+    summary: PropTypes.string.isRequired,
     icon: PropTypes.string.isRequired,
     temperature: PropTypes.number.isRequired
 }

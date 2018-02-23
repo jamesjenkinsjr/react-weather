@@ -11,7 +11,8 @@ class App extends Component {
     this.state = {
       lat: 0.0,
       long: -0.0,
-      currentWeather: {}
+      currentWeather: {},
+      error: null
     };
     this.handleLatChange = this.handleLatChange.bind(this);
     this.handleLongChange = this.handleLongChange.bind(this);
@@ -36,7 +37,10 @@ class App extends Component {
         this.setState({currentWeather: currentWeather});
       })
       .catch(error => {
-        console.error(error);
+        console.log(error);
+        this.setState({
+          error: "Something went wrong"
+        });
       });
   }
   render() {
@@ -55,6 +59,7 @@ class App extends Component {
         </label>
         <button type="submit">MAKE IT RAIN!</button>
       </form>
+      {this.state.error ? <h1>Oops...</h1> : ''}
       
       {isEmptyObject(this.state.currentWeather) 
       ? ''
