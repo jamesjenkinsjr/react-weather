@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { getWeather } from './services/weather.js';
-import CurrentWeather from './CurrentWeather.js'
+import CurrentWeather from './CurrentWeather.js';
+import { isEmptyObject } from './utilities.js';
 import './App.css';
 
 
@@ -55,7 +56,7 @@ class App extends Component {
         <button type="submit">MAKE IT RAIN!</button>
       </form>
       
-      {Object.keys(this.state.currentWeather).length === 0 
+      {isEmptyObject(this.state.currentWeather) 
       ? ''
       : <CurrentWeather {...this.state.currentWeather}/>}
     </div>
