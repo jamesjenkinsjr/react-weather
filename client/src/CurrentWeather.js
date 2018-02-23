@@ -19,4 +19,4 @@ CurrentWeather.propTypes = {
     icon: PropTypes.string.isRequired,
     temperature: PropTypes.number.isRequired
 }
-export default PropTypes;
+export default CurrentWeather;
