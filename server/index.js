@@ -10,6 +10,9 @@ const{ API_KEY } = process.env;
 const serverApp = express();
 const port = process.env.PORT || 5000;
 
+//middleware
+serverApp.use(express.static('client/build'));
+
 serverApp.get('/forecast/:lat,:long', function(request, response){
     const { lat, long } = request.params;
     const url = `https://api.darksky.net/forecast/${API_KEY}/${lat},${long}`;
@@ -25,6 +28,10 @@ serverApp.get('/forecast/:lat,:long', function(request, response){
         });
 });
 
+//This serves the finished React app
+serverApp.get('*', (request, response) => {
+    response.sendFile('index.html', {root: path.resolve('client/build')});
+});
 serverApp.listen(port, () => {
     console.log(`Now listen here ${port}`);
 })
